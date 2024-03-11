@@ -51,7 +51,7 @@ class AlienInvasion:
         elif event.key == pygame.K_q:
             sys.exit()
         elif event.key == pygame.K_SPACE:
-            self._fire_bullet()
+            self._fire_bullet()            
 
     def _check_keyup_events(self, event):
         """Respond to key releases."""
@@ -75,7 +75,7 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
-                
+
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
@@ -83,8 +83,8 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.ship.blitme()
 
-        # Make the most recently drawn screen visible.
         pygame.display.flip()
+
 
 if __name__ == '__main__':
     # Make a game instance, and run the game.
