@@ -42,6 +42,18 @@ class AlienInvasion:
             self._update_screen()
             self.clock.tick(60)
 
+    def _ship_hit(self):
+        """Respond to the ship being hit by  an alien."""
+        # Decrement ships_left.
+        self.stats.ships_Left -= 1
+
+        # Get rid of any remaining bullets and aliens.
+        self.bullets.empty()
+        self.aliens.empty()
+
+        # Pause.
+        sleep(0.5)
+
     def _check_events(self):
         """Respond to keypresses and mouse events."""
         for event in pygame.event.get():
@@ -77,8 +89,8 @@ class AlienInvasion:
 
         # Look for alien-ship collisions.
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print("Ship hit!!!")
- 
+            self._ship_hit()
+            
     def _check_fleet_edges(self):
         """Respond appropriately if any aliens have reached an edge."""
         for alien in self.aliens.sprites():
